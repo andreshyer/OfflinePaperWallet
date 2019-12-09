@@ -53,9 +53,9 @@ This section will attempt to very briefly explain the idea of how the public add
 Bitcoin (BTC) and Litecoin (LTC) follow extremely, similar protocols to generate public addresses. This is 
 because LTC is a hard fork from BTC. BTC and LTC addresses are formed in the major steps:
 
-private key > SECP256k1 elliptic curve > add extension b"04" > public key
-public key > SHA256 > add extension 2 > hashed public key
-hashed public key > SHA256 > SHA256 > checksum
+private key > SECP256k1 elliptic curve > add extension b"04" > public key |
+public key > SHA256 > add extension 2 > hashed public key |
+hashed public key > SHA256 > SHA256 > checksum |
 BTC/LTC address = hashed public key + checksum
 
 The only difference between LTC and BTC addresses are that extension 2 for BTC = b"00" and for LTC = b"30".
@@ -68,7 +68,7 @@ The process to make a ethereum (ETH) address is much simpler than that of BTC/LT
 however, run private key through some elliptic curve and hash the result.
 The major steps to form a ETH wallet are:
 
-private key > SECP256k1 elliptic curve > public key
+private key > SECP256k1 elliptic curve > public key |
 public key > keccak > take last 20 bytes from hash > add extension "0x" > ETH address
 
 To implement these protocols into python, I used the package ecdsa for the SECP256k1 curve, pysha3 for the keccak
