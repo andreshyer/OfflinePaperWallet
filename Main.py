@@ -2,7 +2,6 @@ import BitcoinAP
 import EthereumAP
 import LitecoinAP
 import HelpAP
-from os import system
 from time import sleep
 
 
