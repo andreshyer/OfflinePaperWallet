@@ -1,6 +1,7 @@
 import BitcoinAP
 import EthereumAP
 import LitecoinAP
+import HelpAP
 from os import system
 from time import sleep
 
@@ -72,7 +73,7 @@ while i:
         LitecoinWallet.WalletDetails()
 
     elif WalletType == str(4):
-        system("HELP.txt")
+        HelpAP.print_help()
 
     elif WalletType == str(5):
         print("\nThank you for using the OfflinePaperWallet!")
