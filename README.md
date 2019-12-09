@@ -12,7 +12,7 @@ being generated. Hopefully this can provide confidence that this is a safe tool 
 ## General Help
 
 This is a terminal tool, meaning that commands must be typed. Typing in the number '3' will lead to option 3 being
-executed. There is not much else to really explain. If you can read this, then the application is working just fine.
+executed. There is not much else to really explain.
 
 ## General Information
 
