@@ -105,4 +105,5 @@ A packaged version of this script can be downloaded at
 https://github.com/andreshyer/OfflinePaperWallet/releases/tag/v0.01.
 The application was created with pyinstaller 3.5 inside of a conda environment. Currently only an application for
 Windows-64 is available. Support for linux is coming in the near future, and support for MacOS may or may not ever
-come.
+come. You can still download the source code and run the python Main.py script, which acts the same way as the
+application. Also, you can package the application yourself if you woudl perfer to do so.
