@@ -5,9 +5,13 @@ addresses for common crypto-currencies. The support currencies are Bitcoin, Ethe
 
 OfflinePaperWallet is not sponsored or owned by any developer of Bitcoin, Ethereum, or Litecoin. That means this is an
 unofficial application, and should be validated by experienced users. I will provide information on how this
-application works, and why it is safe to use. There are a few different offline tools that do serve a similar propose
+application works, and why it is I believe it safe to use. There are a few different offline tools that do serve a similar propose
 to what this provides. The difference is that here I will try and explain how the private keys and public addresses are
-being generated. Hopefully this can provide confidence that this is a safe tool to use.
+being generated. Hopefully this can provide confidence that this is a 'safe' tool to use. Although this is meant to be an offline tool,
+there is nothing safe in this world. It is ideal if the user could verify the tool generates vaild keys through different blockchains,
+then only the use the application on a device that was NEVER connected to the internet for actual wallets the user intends to keep
+large amounts of cryto on. Also if you find a bug, notice a lack of logic, or anything else that makes this application not safe, please
+reach out. Either I can correct the problem or delete this repo. 
 
 ## General Help
 
@@ -19,7 +23,7 @@ executed. There is not much else to really explain.
 All the private key and public address that generated in application are generated using python built-in packages as
 well as the external packages: ecdsa, base58, and pysha3. Also this application is completely self-contained. Meaning
 the machine never has to be connected to the internet for this application to work. Also, all the source code for this
-application is available at https://github.com/andreshyer/OfflinePaperWallet
+application is available at https://github.com/andreshyer/OfflinePaperWallet.
 
 ## How private keys are generated
 
@@ -30,7 +34,7 @@ SHA245 hashing protocol was implemented was by using the python built-in package
 passphrase into the terminal, all that is happening to generate the private is the passphrase is pass through the
 SHA256 protocol, and the output is the private key.
 !!!!!DO NOT REUSE PRIVATE KEYS FOR ANY REASON WHATSOEVER!!!!!
-Even though in theory you could reuse private keys, don't
+Even though in theory you could reuse private keys, don't for your and everyone else's safety.
 
 ## Non-recoverable Mode
 
@@ -49,7 +53,7 @@ non-recoverable.
 
 ## Private key to public address
 
-This section will attempt to very briefly explain the idea of how the public addresses are generated, in this script. 
+This section will attempt to briefly explain the idea of how the public addresses are generated, in this script. 
 Bitcoin (BTC) and Litecoin (LTC) follow extremely, similar protocols to generate public addresses. This is 
 because LTC is a hard fork from BTC. BTC and LTC addresses are formed in the major steps:
 
@@ -106,4 +110,4 @@ https://github.com/andreshyer/OfflinePaperWallet/releases/tag/v0.01.
 The application was created with pyinstaller 3.5 inside of a conda environment. Currently only an application for
 Windows-64 is available. Support for linux is coming in the near future, and support for MacOS may or may not ever
 come. You can still download the source code and run the python Main.py script, which acts the same way as the
-application. Also, you can package the application yourself if you woudl perfer to do so.
+application. Also, you can package the application yourself if you would perfer to do so.
