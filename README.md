@@ -98,8 +98,11 @@ You can't.
 I did not make this for profit, I made this for my own needs. Since I needed a tool like this, figured others would
 like it as well. I got tried of having to make secure paper wallets. Boot up a live OS, go to a site, go offline,
 generate wallet, shutdown computer without going back online. That is a lot of work, I wanted something simple and
-secure. Also, I learned a lot about how wallets are generated form making, which is more than enough profit for me.
+secure. Also, I learned a lot about how wallets are generated form making this, which is more than enough for me.
 
 ## Download 
-
-https://github.com/andreshyer/OfflinePaperWallet/releases/tag/v0.01
+A packaged version of this script can be downloaded at
+https://github.com/andreshyer/OfflinePaperWallet/releases/tag/v0.01.
+The application was created with pyinstaller 3.5 inside of a conda environment. Currently only an application for
+Windows-64 is available. Support for linux is coming in the near future, and support for MacOS may or may not ever
+come.
