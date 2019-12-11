@@ -1,14 +1,7 @@
-import kivy
 from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.widget import Widget
-from kivy.core.window import Window
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.properties import ObjectProperty, StringProperty
 from Wallets import EthereumAP, LitecoinAP, BitcoinAP, HelpAP
-from kivy.config import Config
 
 
 class Menu_Screen(Screen):
@@ -111,7 +104,7 @@ class OfflinePaperWalletApp(App):  # Main class and starts up Kivy
 
     def build(self):
         self.icon = 'AppData/BTC_logo.png'
-        Builder.load_file('AppData/MenuScreen.kv')
+        Builder.load_file('AppData/OfflineWalletGenerator.kv')
         sm = ScreenManager()
         sm.add_widget(Menu_Screen(name='Menu_Screen'))
         sm.add_widget(BTC_Screen(name='BTC_Screen'))
