@@ -6,8 +6,9 @@ from kivy.uix.widget import Widget
 from kivy.core.window import Window
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.properties import ObjectProperty
-from Wallets import EthereumAP, LitecoinAP, BitcoinAP
+from kivy.properties import ObjectProperty, StringProperty
+from Wallets import EthereumAP, LitecoinAP, BitcoinAP, HelpAP
+from kivy.config import Config
 
 
 class Menu_Screen(Screen):
@@ -30,7 +31,7 @@ class BTC_Screen(Screen):
             self.ids.NRM_state.text = "Non-\nRecoverable\nMode\n(Disabled)"
 
     def get_keys(self):
-        if len(self.ids.string_to_hash.text) < 40:
+        if len(self.ids.string_to_hash.text) < 25:
             self.ids.Public_Address.text = 'Not enough entropy, please enter more keys'
             self.ids.Private_Key.text = 'Not enough entropy, please enter more keys'
         else:
@@ -53,7 +54,7 @@ class LTC_Screen(Screen):
             self.ids.NRM_state.text = "Non-\nRecoverable\nMode\n(Disabled)"
 
     def get_keys(self):
-        if len(self.ids.string_to_hash.text) < 40:
+        if len(self.ids.string_to_hash.text) < 25:
             self.ids.Public_Address.text = 'Not enough entropy, please enter more keys'
             self.ids.Private_Key.text = 'Not enough entropy, please enter more keys'
         else:
@@ -76,7 +77,7 @@ class ETH_Screen(Screen):
             self.ids.NRM_state.text = "Non-\nRecoverable\nMode\n(Disabled)"
 
     def get_keys(self):
-        if len(self.ids.string_to_hash.text) < 40:
+        if len(self.ids.string_to_hash.text) < 25:
             self.ids.Public_Address.text = 'Not enough entropy, please enter more keys'
             self.ids.Private_Key.text = 'Not enough entropy, please enter more keys'
         else:
@@ -87,28 +88,39 @@ class ETH_Screen(Screen):
 
 
 class Help_Screen(Screen):
+
+    def set_text(self):
+        self.ids.Help_box.text = self.text
+
     def __init__(self, **kwargs):
         super(Help_Screen, self).__init__(**kwargs)
+        self.text = HelpAP.return_help()
+
 
 
 class Dev_Screen(Screen):
+    def set_text(self):
+        self.ids.Help_box.text = self.text
+
     def __init__(self, **kwargs):
         super(Dev_Screen, self).__init__(**kwargs)
-
-Builder.load_file('AppData/MenuScreen.kv')
-sm = ScreenManager()
-sm.add_widget(Menu_Screen(name='Menu_Screen'))
-sm.add_widget(BTC_Screen(name='BTC_Screen'))
-sm.add_widget(LTC_Screen(name='LTC_Screen'))
-sm.add_widget(ETH_Screen(name='ETH_Screen'))
-sm.add_widget(Help_Screen(name='Help_Screen'))
-sm.add_widget(Dev_Screen(name='Dev_Screen'))
+        self.text = HelpAP.return_help()
 
 
 class OfflinePaperWalletApp(App):  # Main class and starts up Kivy
+
     def build(self):
-        self.icon = 'AppData/vcu_png.png'
+        self.icon = 'AppData/BTC_logo.png'
+        Builder.load_file('AppData/MenuScreen.kv')
+        sm = ScreenManager()
+        sm.add_widget(Menu_Screen(name='Menu_Screen'))
+        sm.add_widget(BTC_Screen(name='BTC_Screen'))
+        sm.add_widget(LTC_Screen(name='LTC_Screen'))
+        sm.add_widget(Help_Screen(name='Help_Screen'))
+        sm.add_widget(ETH_Screen(name='ETH_Screen'))
+        sm.add_widget(Dev_Screen(name='Dev_Screen'))
         return sm
 
 
-OfflinePaperWalletApp().run()
+if __name__ == "__main__":
+    OfflinePaperWalletApp().run()

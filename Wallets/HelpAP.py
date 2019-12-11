@@ -104,3 +104,6 @@ secure. Also, I learned a lot about how wallets are generated form making, which
 
 def print_help():
     print(text)
+
+def return_help():
+    return text
