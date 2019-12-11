@@ -2,7 +2,7 @@
 #:import hex kivy.utils.get_color_from_hex
 
 <BTC_Screen>:
-    id: MenuScreen
+    id: BTC_Screen
     BoxLayout:
 		padding: 10, 10, 10, 10
 		orientation: 'vertical'
@@ -44,14 +44,18 @@
                         size: self.size
 			    ToggleButton:
 			        size_hint: .2, 0.10
-                    text: "Non-\nRecoverable\nMode"
+                    text: "Non-\nRecoverable\nMode\n(Disabled)"
+                    id: NRM_state
+                    on_press: root.toggle()
                 TextInput:
                     size_hint: 1, 0.10
                     id: string_to_hash
                 Button:
                     size_hint: .2, 0.10
                     text: "Enter"
-                    background_color: .2, 1, 0, .7
+                    background_color: 0, 0, 1, .7
+                    on_release:
+                        root.get_keys()
             GridLayout:
                 padding: 10, 10, 10, 10
 			    size_hint: 1, 0.3
@@ -70,6 +74,7 @@
                     background_color: .3, 0, .8, .7
                 TextInput:
                     text: ''
+                    id: Public_Address
                     color: 0, 0, 0, 1
                     background_color: 0, .7, 0, .5
                 Label:
@@ -79,6 +84,7 @@
                     background_color: 0, 0, .8, .7
                 TextInput:
                     text: ''
+                    id: Private_Key
                     color: 0, 0, 0, 1
                     background_color: .7, 0, 0, .5
 
@@ -101,9 +107,12 @@
                 Button:
                     text: "Help"
                     background_color: .4, .4, .4, 1
+                    on_release:
+                        root.manager.transition.direction = 'up'
+                        root.manager.current = 'Help_Screen'
 
 <LTC_Screen>:
-    id: MenuScreen
+    id: LTC_Screen
     BoxLayout:
 		padding: 10, 10, 10, 10
 		orientation: 'vertical'
@@ -145,14 +154,18 @@
                         size: self.size
 			    ToggleButton:
 			        size_hint: .2, 0.10
-                    text: "Non-\nRecoverable\nMode"
+                    text: "Non-\nRecoverable\nMode\n(Disabled)"
+                    id: NRM_state
+                    on_press: root.toggle()
                 TextInput:
                     size_hint: 1, 0.10
                     id: string_to_hash
                 Button:
                     size_hint: .2, 0.10
                     text: "Enter"
-                    background_color: .2, 1, 0, .7
+                    background_color: 0, 0, 1, .7
+                    on_release:
+                        root.get_keys()
             GridLayout:
                 padding: 10, 10, 10, 10
 			    size_hint: 1, 0.3
@@ -171,6 +184,7 @@
                     background_color: .3, 0, .8, .7
                 TextInput:
                     text: ''
+                    id: Public_Address
                     color: 0, 0, 0, 1
                     background_color: 0, .7, 0, .5
                 Label:
@@ -180,6 +194,7 @@
                     background_color: 0, 0, .8, .7
                 TextInput:
                     text: ''
+                    id: Private_Key
                     color: 0, 0, 0, 1
                     background_color: .7, 0, 0, .5
 
@@ -202,9 +217,12 @@
                 Button:
                     text: "Help"
                     background_color: .4, .4, .4, 1
+                    on_release:
+                        root.manager.transition.direction = 'up'
+                        root.manager.current = 'Help_Screen'
 
 <ETH_Screen>:
-    id: MenuScreen
+    id: ETH_Screen
     BoxLayout:
 		padding: 10, 10, 10, 10
 		orientation: 'vertical'
@@ -246,14 +264,18 @@
                         size: self.size
 			    ToggleButton:
 			        size_hint: .2, 0.10
-                    text: "Non-\nRecoverable\nMode"
+                    text: "Non-\nRecoverable\nMode\n(Disabled)"
+                    id: NRM_state
+                    on_press: root.toggle()
                 TextInput:
                     size_hint: 1, 0.10
                     id: string_to_hash
                 Button:
                     size_hint: .2, 0.10
                     text: "Enter"
-                    background_color: .2, 1, 0, .7
+                    background_color: 0, 0, 1, .7
+                    on_release:
+                        root.get_keys()
             GridLayout:
                 padding: 10, 10, 10, 10
 			    size_hint: 1, 0.3
@@ -272,6 +294,7 @@
                     background_color: .3, 0, .8, .7
                 TextInput:
                     text: ''
+                    id: Public_Address
                     color: 0, 0, 0, 1
                     background_color: 0, .7, 0, .5
                 Label:
@@ -281,6 +304,7 @@
                     background_color: 0, 0, .8, .7
                 TextInput:
                     text: ''
+                    id: Private_Key
                     color: 0, 0, 0, 1
                     background_color: .7, 0, 0, .5
 
@@ -303,6 +327,37 @@
                 Button:
                     text: "Help"
                     background_color: .4, .4, .4, 1
+                    on_release:
+                        root.manager.transition.direction = 'up'
+                        root.manager.current = 'Help_Screen'
+
+<Help_Screen>:
+    id: Help_Screen
+    BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		Label:
+            text: 'Private Key'
+            id: 'key'
+            size_hint: 0, 0
+		Button:
+            text: 'Return'
+            background_color: 0, 0, .8, .7
+            on_release:
+                root.manager.transition.direction = 'down'
+                root.manager.current = 'Menu_Screen'
+
+<Dev_Screen>:
+    id: Dev_Screen
+    BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		Button:
+            text: 'Return'
+            background_color: 0, 0, .8, .7
+            on_release:
+                root.manager.transition.direction = 'down'
+                root.manager.current = 'Menu_Screen'
 
 <Menu_Screen>:
 	BoxLayout:
@@ -399,9 +454,13 @@
             Button:
                 text: 'Help and About'
                 background_color: .4, .4, .4, 1
-                on_release: root.open_help()
+                on_release:
+                    root.manager.transition.direction = 'up'
+                    root.manager.current = 'Help_Screen'
             Button:
                 text: 'Developer Information'
                 background_color: .4, .4, .4, 1
-                on_release: root.open_dev()
+                on_release:
+                    root.manager.transition.direction = 'up'
+                    root.manager.current = 'Dev_Screen'
 

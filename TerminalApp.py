@@ -3,7 +3,6 @@ from Wallets import EthereumAP
 from Wallets import LitecoinAP
 from Wallets import HelpAP
 from time import sleep
-from os import system, chdir, getcwd
 
 
 def user_input(silent):
