@@ -1,0 +1,138 @@
+#:kivy 1.11.1
+#:import hex kivy.utils.get_color_from_hex
+
+<BTC_Screen>:
+    id: MenuScreen
+    BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		GridLayout:
+			size_hint: 1, 0.3
+			rows: 3
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.10
+                text: "Bitcoin Offline Wallet Generation"
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.10
+                text: "Enter passphrase in the box below (Make sure it is long and keep secure)."
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Button:
+				text: 'Back To Menu'
+				background_color: 0, 0, .8, .7
+				on_release:
+				    root.manager.transition.direction = 'right'
+				    root.manager.current = 'Menu_Screen'
+
+<Menu_Screen>:
+	BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		GridLayout:
+			size_hint: 1, 0.3
+			rows: 3
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.10
+                text: "Welcome to Offline Paper Wallet Generator!"
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size: self.texture_size
+                text: 'Please select which type of wallet you would like to generate'
+                size_hint: 1, 0.10
+                color: 1, .2, .5, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+		GridLayout:
+			size_hint: 1, 0.75
+			rows: 3
+			padding: 10, 10, 10, 0
+			canvas.before:
+				Color:
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.size
+			Image:
+                source: 'AppData/BTC_logo.png'
+                size_hint_x: .4
+                allow_stretch: True
+			Button:
+				text: 'Bitcoin'
+				background_color: 0, 0, .8, .7
+				on_release:
+				    root.manager.transition.direction = 'left'
+				    root.manager.current = 'BTC_Screen'
+			Image:
+                source: 'AppData/BTC_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+            Image:
+                source: 'AppData/LTC_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+			Button:
+				text: 'Litecoin'
+				background_color: 0, 0, 0.8, .7
+				on_release: root.open_LTC()
+			Image:
+                source: 'AppData/LTC_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+            Image:
+                source: 'AppData/ETH_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+			Button:
+				text: 'Ethereum'
+				background_color: 0, 0, 0.8, .7
+				on_release: root.open_ETH()
+			Image:
+                source: 'AppData/ETH_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+        GridLayout:
+            size_hint: 1, 0.4
+            rows: 1
+            padding: 10, 10, 10, 10
+            canvas.before:
+				Color:
+					#rgba: 1,.81,0,1
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.size
+            Button:
+                text: 'Help and About'
+                background_color: .4, .4, .4, 1
+                on_release: root.open_help()
+            Button:
+                text: 'Developer Information'
+                background_color: .4, .4, .4, 1
+                on_release: root.open_dev()
+
