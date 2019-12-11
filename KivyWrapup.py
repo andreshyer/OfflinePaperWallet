@@ -1,3 +1,4 @@
+import kivy
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -37,10 +38,10 @@ Builder.load_file('AppData/MenuScreen.kv')
 sm = ScreenManager()
 sm.add_widget(Menu_Screen(name='Menu_Screen'))
 sm.add_widget(BTC_Screen(name='BTC_Screen'))
-sm.add_widget(BTC_Screen(name='LTC_Screen'))
-sm.add_widget(BTC_Screen(name='ETH_Screen'))
-sm.add_widget(BTC_Screen(name='Help_Screen'))
-sm.add_widget(BTC_Screen(name='Dev_Screen'))
+sm.add_widget(LTC_Screen(name='LTC_Screen'))
+sm.add_widget(ETH_Screen(name='ETH_Screen'))
+sm.add_widget(Help_Screen(name='Help_Screen'))
+sm.add_widget(Dev_Screen(name='Dev_Screen'))
 
 
 class OfflinePaperWalletApp(App):  # Main class and starts up Kivy
