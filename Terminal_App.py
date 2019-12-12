@@ -10,21 +10,30 @@ def user_input(silent):
     while i:
         soft = True
         if silent:
-            string = input("Enter Passphrase (enter in the number 1 for non-recoverable key).\n")
+            string = input("Enter Passphrase (enter in the number 2 for non-recoverable key).\n")
         else:
             string = input("Enter in a strong passphrase, this passphrase can be used to recover your private key.\n"
-                           "With that said, ensure that this is a strong passphrase so others can not recover your key.\n"
-                           "If you wish to have a key that can not be recovered by a word phrase, enter in the number '1'.\n"
-                           "If you wish to silence this message, enter in the number '2'.\n")
-        if string == '1':
-            soft = False
-            string = input("Non-recoverable mode has been activated, use with cation.\n"
-                           "Enter in random keys (make it really, really long)\n")
-            i = False
-
+                           "With that said, ensure that this is a strong passphrase so others can not recover you "
+                           "key.\n"
+                           "If you wish to silence this warning, enter in the number '1'.\n"
+                           "If you wish to have a key that can not be recovered by a word phrase, enter in the number "
+                           "'2'.\n")
         if string == '2':
-            print("Quiet Mode Activated\n")
+            while i:
+                soft = False
+                string = input("Non-recoverable mode is activated, use this setting with cation.\n"
+                               "Enter in random keys (make it really, really long)\n")
+                if len(string) < 40:
+                    print('Not enough entropy, please enter more keys\n')
+                else:
+                    i = False
+
+        elif string == '1':
             silent = True
+
+        elif len(string) < 25:
+            print('Not enough entropy, please enter more keys\n')
+
         else:
             i = False
 
