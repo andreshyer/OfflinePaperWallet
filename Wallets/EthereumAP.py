@@ -28,3 +28,5 @@ class EthereumWallet:
         raw_address = k.hexdigest()
         self.address = "0x" + raw_address[-40:]
 
+
+

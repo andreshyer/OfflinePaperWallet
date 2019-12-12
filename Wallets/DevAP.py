@@ -1,6 +1,8 @@
 
 text = '''
-Still under development
+------------------------------------------------------------------------------------------------
+General Help:
+To navigate to different sections, simply click the buttons to navigate the
 '''
 
 def print_help():

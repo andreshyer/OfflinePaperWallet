@@ -45,6 +45,16 @@ instead of using a private key to swept funds into wallets, you use the
 seed to recovery your wallet. Then you can access your funds for the 
 wallet once recovered. So the Mnemonic seed acts as the private key.
 
+Why can't I regenerate Monero addresses from a passphrase?:
+Monero wallet generation automatically has non-recovery mode activated.
+The protocol that generates the Mnemonic seed requires a very large amount
+of entropy. Any passphrase that the user would provide would likely not 
+be enough entropy. Once a passphrase has enough entropy to  be cryptography 
+safe, the mnemonic seed is easier to remember. So the mnemonic seed alone 
+acts as a private key, and a passphrase to recovery your funds on 
+different wallet services, such as MyMonero. The user stills needs to enter
+in random keys to generate additional entropy. 
+
 Where to keep Private keys and Public addresses?:
 As the name of this application suggest, it is highly recommended that you
 write your private key on paper. Please do not save your private key to
@@ -66,14 +76,15 @@ address matches to what the blockchain has.
 
 General Notes:
 There are many features missing in this application that other popular 
-wallets have, such as Electrum. This was done on propose, This is a 
-minimalistic application. OfflinePaperWallet is meant to be run from a 
-computer that does not need an internet connection, with the sole propose of 
-generating private keys and public addresses for common crypto-currencies. 
-The main propose of this application is to generate offline-paper wallets
-where the user can store large amounts of cryto without needing to go
-through a JS website or bootup a live OS. It is still recommended to use
-an air-gaped machine, however, for very large amounts of cryto.
+wallets have, such as Electrum or MyMonero. This was done on propose, 
+this is a minimalistic application. OfflinePaperWallet is meant to be 
+run from a computer that does not need an internet connection, with the 
+sole propose of generating private keys and public addresses for common 
+crypto-currencies. The main propose of this application is to generate 
+offline-paper wallet where the user can store large amounts of cryto 
+without needing to go through a JS website or bootup a live OS. It is 
+still recommended to use an air-gaped machine, however, for very large 
+amounts of cryto.
 '''
 
 
