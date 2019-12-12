@@ -1,7 +1,7 @@
 from kivy.app import App
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
-from Wallets import EthereumAP, LitecoinAP, BitcoinAP, HelpAP
+from Wallets import EthereumAP, LitecoinAP, BitcoinAP, MoneroAP, HelpAP, DevAP
 
 
 class Menu_Screen(Screen):
@@ -97,7 +97,7 @@ class Dev_Screen(Screen):
 
     def __init__(self, **kwargs):
         super(Dev_Screen, self).__init__(**kwargs)
-        self.text = HelpAP.return_help()
+        self.text = DevAP.return_help()
 
 
 class OfflinePaperWalletApp(App):  # Main class and starts up Kivy
