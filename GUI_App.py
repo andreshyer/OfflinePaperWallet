@@ -32,6 +32,10 @@ class BTC_Screen(Screen):
             self.ids.Public_Address.text = BitcoinWallet.address
             self.ids.Private_Key.text = BitcoinWallet.printable_pk
 
+    @staticmethod
+    def set_previous_screen():
+        pervious_screen = 'BTC_Screen'
+
 
 class LTC_Screen(Screen):
     def __init__(self, **kwargs):
@@ -79,16 +83,44 @@ class ETH_Screen(Screen):
             self.ids.Private_Key.text = EthereumWallet.printable_pk
 
 
-
-class Help_Screen(Screen):
+class BTC_Help_Screen(Screen):
 
     def set_text(self):
         self.ids.Help_box.text = self.text
 
     def __init__(self, **kwargs):
-        super(Help_Screen, self).__init__(**kwargs)
+        super(BTC_Help_Screen, self).__init__(**kwargs)
         self.text = HelpAP.return_help()
 
+
+class LTC_Help_Screen(Screen):
+
+    def set_text(self):
+        self.ids.Help_box.text = self.text
+
+    def __init__(self, **kwargs):
+        super(LTC_Help_Screen, self).__init__(**kwargs)
+        self.text = HelpAP.return_help()
+
+
+class ETH_Help_Screen(Screen):
+
+    def set_text(self):
+        self.ids.Help_box.text = self.text
+
+    def __init__(self, **kwargs):
+        super(ETH_Help_Screen, self).__init__(**kwargs)
+        self.text = HelpAP.return_help()
+
+
+class Menu_Help_Screen(Screen):
+
+    def set_text(self):
+        self.ids.Help_box.text = self.text
+
+    def __init__(self, **kwargs):
+        super(Menu_Help_Screen, self).__init__(**kwargs)
+        self.text = HelpAP.return_help()
 
 
 class Dev_Screen(Screen):
@@ -109,8 +141,11 @@ class OfflinePaperWalletApp(App):  # Main class and starts up Kivy
         sm.add_widget(Menu_Screen(name='Menu_Screen'))
         sm.add_widget(BTC_Screen(name='BTC_Screen'))
         sm.add_widget(LTC_Screen(name='LTC_Screen'))
-        sm.add_widget(Help_Screen(name='Help_Screen'))
         sm.add_widget(ETH_Screen(name='ETH_Screen'))
+        sm.add_widget(BTC_Help_Screen(name='BTC_Help_Screen'))
+        sm.add_widget(LTC_Help_Screen(name='LTC_Help_Screen'))
+        sm.add_widget(ETH_Help_Screen(name='ETH_Help_Screen'))
+        sm.add_widget(Menu_Help_Screen(name='Menu_Help_Screen'))
         sm.add_widget(Dev_Screen(name='Dev_Screen'))
         return sm
 
