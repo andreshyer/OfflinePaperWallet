@@ -1,6 +1,111 @@
 #:kivy 1.11.1
 #:import hex kivy.utils.get_color_from_hex
 
+<Menu_Screen>:
+	BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		GridLayout:
+			size_hint: 1, 0.3
+			rows: 3
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.10
+                text: "Welcome to Offline Paper Wallet Generator!"
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size: self.texture_size
+                text: 'Please select which type of wallet you would like to generate'
+                size_hint: 1, 0.10
+                color: 1, .2, .5, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+		GridLayout:
+			size_hint: 1, 0.75
+			rows: 3
+			padding: 10, 10, 10, 0
+			canvas.before:
+				Color:
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.size
+			Image:
+                source: 'AppData/BTC_logo.png'
+                size_hint_x: .4
+                allow_stretch: True
+			Button:
+				text: 'Bitcoin'
+				background_color: 0, 0, .8, .7
+				on_release:
+				    root.manager.transition.direction = 'left'
+				    root.manager.current = 'BTC_Screen'
+			Image:
+                source: 'AppData/BTC_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+            Image:
+                source: 'AppData/LTC_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+			Button:
+				text: 'Litecoin'
+				background_color: 0, 0, 0.8, .7
+				on_release:
+				    root.manager.transition.direction = 'left'
+				    root.manager.current = 'LTC_Screen'
+			Image:
+                source: 'AppData/LTC_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+            Image:
+                source: 'AppData/ETH_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+			Button:
+				text: 'Ethereum'
+				background_color: 0, 0, 0.8, .7
+				on_release:
+				    root.manager.transition.direction = 'left'
+				    root.manager.current = 'ETH_Screen'
+			Image:
+                source: 'AppData/ETH_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+        GridLayout:
+            size_hint: 1, 0.4
+            rows: 1
+            padding: 10, 10, 10, 10
+            canvas.before:
+				Color:
+					#rgba: 1,.81,0,1
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.size
+            Button:
+                text: 'Help and About'
+                background_color: .4, .4, .4, 1
+                on_release:
+                    root.manager.transition.direction = 'up'
+                    root.manager.current = 'Menu_Help_Screen'
+            Button:
+                text: 'Developer Information'
+                background_color: .4, .4, .4, 1
+                on_release:
+                    root.manager.transition.direction = 'up'
+                    root.manager.current = 'Dev_Screen'
+
 <BTC_Screen>:
     id: BTC_Screen
     BoxLayout:
@@ -108,7 +213,7 @@
                     background_color: .4, .4, .4, 1
                     on_release:
                         root.manager.transition.direction = 'up'
-                        root.manager.current = 'Help_Screen'
+                        root.manager.current = 'BTC_Help_Screen'
 
 <LTC_Screen>:
     id: LTC_Screen
@@ -217,7 +322,7 @@
                     background_color: .4, .4, .4, 1
                     on_release:
                         root.manager.transition.direction = 'up'
-                        root.manager.current = 'Help_Screen'
+                        root.manager.current = 'LTC_Help_Screen'
 
 <ETH_Screen>:
     id: ETH_Screen
@@ -326,44 +431,7 @@
                     background_color: .4, .4, .4, 1
                     on_release:
                         root.manager.transition.direction = 'up'
-                        root.manager.current = 'Help_Screen'
-
-<Help_Screen>:
-    id: Help_Screen
-    on_enter: root.set_text()
-    BoxLayout:
-		padding: 10, 10, 10, 10
-		orientation: 'vertical'
-		GridLayout:
-            size_hint: 1, 0.3
-            rows: 2
-            padding: 10, 10, 10, 10
-            canvas.before:
-                Color:
-                    rgba: 1, 1, 1, 1
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            ScrollView:
-                do_scroll_x: False
-                do_scroll_y: True
-                Label:
-                    size_hint_y: None
-                    size_hint_x: 1
-                    height: self.texture_size[1]
-                    text_width: self.width
-                    id: Help_box
-                    text: ''
-                    font_name: 'Arial'
-                    color: 0, 0, 0, 1
-                    canvas.before:
-            Button:
-                text: "Return to Menu"
-                size_hint: 1, .1
-                background_color: 0, 0, .8, .7
-                on_release:
-                    root.manager.transition.direction = 'down'
-                    root.manager.current = 'Menu_Screen'
+                        root.manager.current = 'ETH_Help_Screen'
 
 <Dev_Screen>:
     id: Dev_Screen
@@ -402,108 +470,150 @@
                     root.manager.transition.direction = 'down'
                     root.manager.current = 'Menu_Screen'
 
-<Menu_Screen>:
-	BoxLayout:
+<BTC_Help_Screen>:
+    id: Help_Screen
+    on_enter: root.set_text()
+    BoxLayout:
 		padding: 10, 10, 10, 10
 		orientation: 'vertical'
 		GridLayout:
-			size_hint: 1, 0.3
-			rows: 3
-            Label:
-                size: self.texture_size
-                size_hint: 1, 0.10
-                text: "Welcome to Offline Paper Wallet Generator!"
-                color: 0, 0, 0, 1
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size: self.texture_size
-                text: 'Please select which type of wallet you would like to generate'
-                size_hint: 1, 0.10
-                color: 1, .2, .5, 1
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-		GridLayout:
-			size_hint: 1, 0.75
-			rows: 3
-			padding: 10, 10, 10, 0
-			canvas.before:
-				Color:
-					rgba: 1, 1, 1, 1
-				Rectangle:
-					pos: self.pos
-					size: self.size
-			Image:
-                source: 'AppData/BTC_logo.png'
-                size_hint_x: .4
-                allow_stretch: True
-			Button:
-				text: 'Bitcoin'
-				background_color: 0, 0, .8, .7
-				on_release:
-				    root.manager.transition.direction = 'left'
-				    root.manager.current = 'BTC_Screen'
-			Image:
-                source: 'AppData/BTC_logo.png'
-                size_hint_x: 0.4
-                allow_stretch: True
-            Image:
-                source: 'AppData/LTC_logo.png'
-                size_hint_x: 0.4
-                allow_stretch: True
-			Button:
-				text: 'Litecoin'
-				background_color: 0, 0, 0.8, .7
-				on_release:
-				    root.manager.transition.direction = 'left'
-				    root.manager.current = 'LTC_Screen'
-			Image:
-                source: 'AppData/LTC_logo.png'
-                size_hint_x: 0.4
-                allow_stretch: True
-            Image:
-                source: 'AppData/ETH_logo.png'
-                size_hint_x: 0.4
-                allow_stretch: True
-			Button:
-				text: 'Ethereum'
-				background_color: 0, 0, 0.8, .7
-				on_release:
-				    root.manager.transition.direction = 'left'
-				    root.manager.current = 'ETH_Screen'
-			Image:
-                source: 'AppData/ETH_logo.png'
-                size_hint_x: 0.4
-                allow_stretch: True
-        GridLayout:
-            size_hint: 1, 0.4
-            rows: 1
+            size_hint: 1, 0.3
+            rows: 2
             padding: 10, 10, 10, 10
             canvas.before:
-				Color:
-					#rgba: 1,.81,0,1
-					rgba: 1, 1, 1, 1
-				Rectangle:
-					pos: self.pos
-					size: self.size
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                Label:
+                    size_hint_y: None
+                    size_hint_x: 1
+                    height: self.texture_size[1]
+                    text_width: self.width
+                    id: Help_box
+                    text: ''
+                    font_name: 'Arial'
+                    color: 0, 0, 0, 1
+                    canvas.before:
             Button:
-                text: 'Help and About'
-                background_color: .4, .4, .4, 1
+                text: "Return to Menu"
+                size_hint: 1, .1
+                background_color: 0, 0, .8, .7
                 on_release:
-                    root.manager.transition.direction = 'up'
-                    root.manager.current = 'Help_Screen'
-            Button:
-                text: 'Developer Information'
-                background_color: .4, .4, .4, 1
-                on_release:
-                    root.manager.transition.direction = 'up'
-                    root.manager.current = 'Dev_Screen'
+                    root.manager.transition.direction = 'down'
+                    root.manager.current = 'BTC_Screen'
 
+<LTC_Help_Screen>:
+    id: Help_Screen
+    on_enter: root.set_text()
+    BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		GridLayout:
+            size_hint: 1, 0.3
+            rows: 2
+            padding: 10, 10, 10, 10
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                Label:
+                    size_hint_y: None
+                    size_hint_x: 1
+                    height: self.texture_size[1]
+                    text_width: self.width
+                    id: Help_box
+                    text: ''
+                    font_name: 'Arial'
+                    color: 0, 0, 0, 1
+                    canvas.before:
+            Button:
+                text: "Return to Menu"
+                size_hint: 1, .1
+                background_color: 0, 0, .8, .7
+                on_release:
+                    root.manager.transition.direction = 'down'
+                    root.manager.current = 'LTC_Screen'
+
+<ETH_Help_Screen>:
+    id: Help_Screen
+    on_enter: root.set_text()
+    BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		GridLayout:
+            size_hint: 1, 0.3
+            rows: 2
+            padding: 10, 10, 10, 10
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                Label:
+                    size_hint_y: None
+                    size_hint_x: 1
+                    height: self.texture_size[1]
+                    text_width: self.width
+                    id: Help_box
+                    text: ''
+                    font_name: 'Arial'
+                    color: 0, 0, 0, 1
+                    canvas.before:
+            Button:
+                text: "Return to Menu"
+                size_hint: 1, .1
+                background_color: 0, 0, .8, .7
+                on_release:
+                    root.manager.transition.direction = 'down'
+                    root.manager.current = 'ETH_Screen'
+
+<Menu_Help_Screen>:
+    id: Help_Screen
+    on_enter: root.set_text()
+    BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		GridLayout:
+            size_hint: 1, 0.3
+            rows: 2
+            padding: 10, 10, 10, 10
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                Label:
+                    size_hint_y: None
+                    size_hint_x: 1
+                    height: self.texture_size[1]
+                    text_width: self.width
+                    id: Help_box
+                    text: ''
+                    font_name: 'Arial'
+                    color: 0, 0, 0, 1
+                    canvas.before:
+            Button:
+                text: "Return to Menu"
+                size_hint: 1, .1
+                background_color: 0, 0, .8, .7
+                on_release:
+                    root.manager.transition.direction = 'down'
+                    root.manager.current = 'Menu_Screen'
