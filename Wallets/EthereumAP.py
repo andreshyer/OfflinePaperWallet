@@ -2,7 +2,7 @@ from .PrivateKeyGenerator import NewPrivateKey
 from binascii import unhexlify, hexlify
 from ecdsa import SigningKey, SECP256k1
 from codecs import decode
-from sha3 import keccak_256
+from Crypto.Hash import keccak
 
 
 class EthereumWallet:
@@ -22,7 +22,7 @@ class EthereumWallet:
         public_key_bytes = hexlify(self.vk.to_string())
 
         public_key_bytes = decode(public_key_bytes, 'hex')
-        k = keccak_256()
+        k = keccak.new(digest_bits=256)
         k.update(public_key_bytes)
 
         raw_address = k.hexdigest()
