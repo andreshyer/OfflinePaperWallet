@@ -13,11 +13,6 @@ then only the use the application on a device that was NEVER connected to the in
 large amounts of cryto on. Also if you find a bug, notice a lack of logic, or anything else that makes this application not safe, please
 reach out. Either I can correct the problem or delete this repo. 
 
-## General Help
-
-This is a terminal tool, meaning that commands must be typed. Typing in the number '3' will lead to option 3 being
-executed. There is not much else to really explain.
-
 ## General Information
 
 All the private key and public address that generated in application are generated using python built-in packages as
@@ -91,10 +86,9 @@ used and that I am not just sending information to myself or anyone else.
 ## Upcoming developments
 
 These are changes that I would like to add in the near future. If these changes never happen, then whatever. 
-1) Option for terminal tool and GUI tool
-2) Option for more cryto-currencies (Most notably Monero)
+1) Option for more cryto-currencies (Most notably Monero)
     -Important to note that I am having a hard time finding a protocol for private > address for Monero (MTX)
-3) Support for Linux/Mac (Mainly Linux, I do not have access to a Mac)
+2) Support for Linux/Mac (Mainly Linux, I do not have access to a Mac)
 
 ## Where can I donate?
 
@@ -106,7 +100,7 @@ secure. Also, I learned a lot about how wallets are generated form making this, 
 
 ## Download 
 A packaged version of this script can be downloaded at
-https://github.com/andreshyer/OfflinePaperWallet/releases/tag/v0.01.
+https://github.com/andreshyer/OfflinePaperWallet/tree/v0.02.
 The application was created with pyinstaller 3.5 inside of a conda environment. Currently only an application for
 Windows-64 is available. Support for linux is coming in the near future, and support for MacOS may or may not ever
 come. You can still download the source code and run the python Main.py script, which acts the same way as the
