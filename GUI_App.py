@@ -32,10 +32,6 @@ class BTC_Screen(Screen):
             self.ids.Public_Address.text = BitcoinWallet.address
             self.ids.Private_Key.text = BitcoinWallet.printable_pk
 
-    @staticmethod
-    def set_previous_screen():
-        pervious_screen = 'BTC_Screen'
-
 
 class LTC_Screen(Screen):
     def __init__(self, **kwargs):
