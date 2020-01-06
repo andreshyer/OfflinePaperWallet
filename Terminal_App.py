@@ -1,4 +1,4 @@
-from Wallets import BitcoinAP, EthereumAP, LitecoinAP, MoneroAP, HelpAP
+from Wallets import BitcoinAP, EthereumAP, LitecoinAP, MoneroAP, HelpAP, DevAP
 from time import sleep
 
 
@@ -36,13 +36,13 @@ def run_terminal_app():
         return string, silent, soft
 
     WalletType = input("Welcome to the easy to use terminal tool to generate cryto-wallets offline.\n"
-                       "Please enter what type of wallet you would like to generate.\n"
                        "1) Bitcoin\n"
                        "2) Ethereum\n"
                        "3) Litecoin\n"
                        "4) Monero\n"
                        "5) Help and additional information\n"
-                       "6) Exit\n")
+                       "6) Developer information\n"
+                       "7) Exit\n")
     catch = False
     silent = False
     while True:
@@ -55,7 +55,8 @@ def run_terminal_app():
                                "3) Litecoin\n"
                                "4) Monero\n"
                                "5) Help and additional information\n"
-                               "6) Exit\n")
+                               "6) Developer information\n"
+                               "7) Exit\n")
         if WalletType == str(1):
             string, silent, soft = user_input(silent)
             BitCoin_wallet = BitcoinAP.BitcoinWallet(string, soft)
@@ -75,17 +76,13 @@ def run_terminal_app():
         elif WalletType == str(5):
             HelpAP.print_help()
         elif WalletType == str(6):
+            DevAP.print_help()
+        elif WalletType == str(7):
             print("\nThank you for using the OfflinePaperWallet!")
             sleep(3)
             return
         else:
-            WalletType = input('Input not understood...\n'
-                               "1) Bitcoin\n"
-                               "2) Ethereum\n"
-                               "3) Litecoin\n"
-                               "4) Monero\n"
-                               "5) Help and additional information\n"
-                               "6) Exit\n")
+            WalletType = print('\nInput not understood...')
 
 
 if __name__ == "__main__":
