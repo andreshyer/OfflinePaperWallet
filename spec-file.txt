@@ -1,0 +1,38 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: win-64
+@EXPLICIT
+https://repo.anaconda.com/pkgs/main/win-64/ca-certificates-2019.11.27-0.conda
+https://repo.anaconda.com/pkgs/main/win-64/vs2015_runtime-14.16.27012-hf0eaf9b_1.conda
+https://repo.anaconda.com/pkgs/main/win-64/vc-14.1-h0510ff6_4.conda
+https://conda.anaconda.org/conda-forge/win-64/glew-2.0.0-he025d50_1003.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/jpeg-9c-hfa6e2cd_1001.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/libwebp-1.0.2-hfa6e2cd_5.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/lz4-c-1.8.3-he025d50_1001.tar.bz2
+https://repo.anaconda.com/pkgs/main/win-64/openssl-1.1.1d-he774522_3.conda
+https://conda.anaconda.org/conda-forge/win-64/sdl2-2.0.10-h6538335_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/win-64/sqlite-3.30.1-he774522_0.conda
+https://conda.anaconda.org/conda-forge/win-64/tk-8.6.10-hfa6e2cd_0.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/xz-5.2.4-h2fa13f4_1001.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/zlib-1.2.11-h2fa13f4_1006.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/libpng-1.6.37-h7602738_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/win-64/python-3.7.5-h8c8aaf0_0.conda
+https://conda.anaconda.org/conda-forge/win-64/smpeg2-2.0.0-h6538335_1.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/zstd-1.4.4-hd8a0e53_1.tar.bz2
+https://repo.anaconda.com/pkgs/main/win-64/certifi-2019.11.28-py37_0.conda
+https://conda.anaconda.org/conda-forge/win-64/docutils-0.15.2-py37_0.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/freetype-2.10.0-h563cfd7_1.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/libtiff-4.1.0-h21b02b4_3.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/olefile-0.46-py_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/win-64/pycrypto-2.6.1-py37hfa6e2cd_9.conda
+https://repo.anaconda.com/pkgs/main/win-64/pycryptodome-3.8.2-py37he774522_0.conda
+https://conda.anaconda.org/conda-forge/win-64/sdl2_mixer-2.0.4-h6538335_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/win-64/wincertstore-0.2-py37_0.conda
+https://conda.anaconda.org/conda-forge/win-64/pillow-7.0.0-py37h9ea1dd6_0.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/sdl2_image-2.0.5-h2da4f57_1.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/sdl2_ttf-2.0.15-h4636d2b_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/win-64/setuptools-44.0.0-py37_0.conda
+https://conda.anaconda.org/conda-forge/noarch/pygments-2.5.2-py_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/win-64/wheel-0.33.6-py37_0.conda
+https://conda.anaconda.org/conda-forge/win-64/kivy-1.11.1-py37hbc14df2_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/win-64/pip-19.3.1-py37_0.conda
