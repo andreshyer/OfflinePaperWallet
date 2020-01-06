@@ -27,7 +27,7 @@ Ethereum, and Litecoin are all generated the same way using the SHA256
 hashing protocol. What the SHA256 protocol does is it takes a string that the 
 user inputs, it can be any string, and converts that into a 256-bit int. The 
 exact details on how the SHA256 protocol works I will not explain here, but the 
-way the SHA245 hashing protocol was implemented was by using the python built-in 
+way the SHA256 hashing protocol was implemented was by using the python built-in 
 package hashlib. When the user inputs a passphrase into the terminal, all that 
 is happening to generate the private is the passphrase is pass through the SHA256 
 protocol, and the output is the private key.
