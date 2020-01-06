@@ -3,7 +3,7 @@
 A simple application/python script to allow users to easily generate private keys and public 
 addresses for common crypto-currencies. The support currencies are Bitcoin, Ethereum, and Litecoin.
 
-OfflinePaperWallet is not sponsored or owned by any developer of Bitcoin, Ethereum, or Litecoin. That means this is an
+OfflinePaperWallet is not sponsored or owned by any developer of Bitcoin, Ethereum, Litecoin, or Monero. That means this is an
 unofficial application, and should be validated by experienced users. I will provide information on how this
 application works, and why it is I believe it safe to use. There are a few different offline tools that do serve a similar propose
 to what this provides. The difference is that here I will try and explain how the private keys and public addresses are
