@@ -1,25 +1,17 @@
 
 
 text = '''
-------------------------------------------------------------------------------------------------
-In this help screen, you will see Monero referenced even though Monero
-is not apart of this application. The scripts to generate Monero
-addresses in python are being generated. Monero follows a very different
-protocol to generate keys and address, thus it is taking more time to 
-verify everything is secure and working correctly for Monero.
-------------------------------------------------------------------------------------------------
-
 General Help:
 To navigate to different sections, simply click the buttons to navigate the
 GUI. When generating wallets, the user is required to type text into the
 large text box above where the private key and public address boxes are
 located. The text entered is a passphrase that get converted into the
 private keys and public addresses shown (With the exception of Monero). 
-That is why is it important to have a really strong passphrase, as other 
+That is why is it important to have a really strong passphrase, as others 
 could recover your wallet if you have a predictable passphrase. 
 
 What is 'Non-recovery Mode'?:
-OfflinePaperWallet give the user the option to create private keys and
+OfflinePaperWallet gives the user the option to create private keys and
 public addresses that can not be recovered from a passphrase. Use this
 option with cation. If you ever lose your private key, you will not be
 able to recover your funds. But, this option can be used as a more
@@ -45,16 +37,6 @@ instead of using a private key to swept funds into wallets, you use the
 seed to recovery your wallet. Then you can access your funds for the 
 wallet once recovered. So the Mnemonic seed acts as the private key.
 
-Why can't I regenerate Monero addresses from a passphrase?:
-Monero wallet generation automatically has non-recovery mode activated.
-The protocol that generates the Mnemonic seed requires a very large amount
-of entropy. Any passphrase that the user would provide would likely not 
-be enough entropy. Once a passphrase has enough entropy to  be cryptography 
-safe, the mnemonic seed is easier to remember. So the mnemonic seed alone 
-acts as a private key, and a passphrase to recovery your funds on 
-different wallet services, such as MyMonero. The user stills needs to enter
-in random keys to generate additional entropy. 
-
 Where to keep Private keys and Public addresses?:
 As the name of this application suggest, it is highly recommended that you
 write your private key on paper. Please do not save your private key to
@@ -67,8 +49,8 @@ can use PGP or Veracrypt for this propose.
 
 How do I know the wallets are being made correctly and securely?:
 Good question, and this can lead into a detailed discussion. If you want to
-know exactly how the wallets are being generated (such as protocol, and how
-it was implemented into python), please refer to Developer Information.
+know exactly how the wallets are being generated (such as protocols, and how
+they was implemented into python), please refer to Developer Information.
 If want to know whether or not the wallets are being generated correctly,
 you can use blockchains to test your addresses and keys. Use a test
 private key you do not intend to key crypto on, and see if the public
