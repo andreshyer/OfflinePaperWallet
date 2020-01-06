@@ -1,6 +1,51 @@
 #:kivy 1.11.1
 #:import hex kivy.utils.get_color_from_hex
 
+# This file acts as the backbone for the GUI application. This file tells Kivy how to build the application. If you
+    # have any questions about how this file works, or any other kivy questions, please refer to kivy documentation.
+    # https://kivy.org/doc/stable/
+
+
+################################## Dev Screen #################################################
+<Dev_Screen>:
+    id: Dev_Screen
+    on_enter: root.set_text()
+    BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		GridLayout:
+            size_hint: 1, 0.3
+            rows: 2
+            padding: 10, 10, 10, 10
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                Label:
+                    size_hint_y: None
+                    size_hint_x: 1
+                    height: self.texture_size[1]
+                    text_width: self.width
+                    id: Help_box
+                    text: ''
+                    font_name: 'Arial'
+                    color: 0, 0, 0, 1
+                    canvas.before:
+            Button:
+                text: "Return to Menu"
+                size_hint: 1, .1
+                background_color: 0, 0, .8, .7
+                on_release:
+                    root.manager.transition.direction = 'down'
+                    root.manager.current = 'Menu_Screen'
+
+
+################################## Menu Screen #################################################
 <Menu_Screen>:
 	BoxLayout:
 		padding: 10, 10, 10, 10
@@ -11,7 +56,7 @@
             Label:
                 size: self.texture_size
                 size_hint: 1, 0.10
-                text: "Welcome to Offline Paper Wallet Generator!"
+                text: "Welcome to Offline Wallet Generator!"
                 color: 0, 0, 0, 1
                 canvas.before:
                     Color:
@@ -21,7 +66,7 @@
                         size: self.size
             Label:
                 size: self.texture_size
-                text: 'Please select which type of wallet you would like to generate'
+                text: 'Please select wallet type'
                 size_hint: 1, 0.10
                 color: 1, .2, .5, 1
                 canvas.before:
@@ -32,7 +77,7 @@
                         size: self.size
 		GridLayout:
 			size_hint: 1, 0.75
-			rows: 3
+			rows: 4
 			padding: 10, 10, 10, 0
 			canvas.before:
 				Color:
@@ -82,6 +127,21 @@
                 source: 'AppData/ETH_logo.png'
                 size_hint_x: 0.4
                 allow_stretch: True
+            Image:
+                source: 'AppData/MTX_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+            Button:
+				text: 'Monero'
+				background_color: 0, 0, 0.8, .7
+				on_release:
+				    root.manager.transition.direction = 'left'
+				    root.manager.current = 'MTX_Screen'
+		    Image:
+                source: 'AppData/MTX_logo.png'
+                size_hint_x: 0.4
+                allow_stretch: True
+
         GridLayout:
             size_hint: 1, 0.4
             rows: 1
@@ -106,335 +166,8 @@
                     root.manager.transition.direction = 'up'
                     root.manager.current = 'Dev_Screen'
 
-<BTC_Screen>:
-    id: BTC_Screen
-    BoxLayout:
-		padding: 10, 10, 10, 10
-		orientation: 'vertical'
-		GridLayout:
-			size_hint: 1, 0.3
-			rows: 5
-            Label:
-                size: self.texture_size
-                size_hint: 1, 0.1
-                text: "Bitcoin Offline Wallet Generation"
-                color: 0, 0, 0, 1
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size: self.texture_size
-                size_hint: 1, 0.1
-                text: "Enter passphrase in the box below (Make sure it is long and keep it secure)."
-                color: 0, 0, .8, .7
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            GridLayout:
-                padding: 10, 10, 10, 10
-			    size_hint: 1, 0.5
-			    rows: 1
-			    canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-			    ToggleButton:
-			        size_hint: .2, 0.10
-                    text: "Non-\nRecoverable\nMode\n(Disabled)"
-                    id: NRM_state
-                    on_press: root.toggle()
-                TextInput:
-                    size_hint: 1, 0.10
-                    id: string_to_hash
-                Button:
-                    size_hint: .2, 0.10
-                    text: "Enter"
-                    background_color: 0, 0, 1, .7
-                    on_release:
-                        root.get_keys()
-            GridLayout:
-                padding: 10, 10, 10, 10
-			    size_hint: 1, 0.3
-			    rows: 2
-			    padding: 10, 10, 10, 10
-			    canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-			    Label:
-                    text: 'Public Address'
-                    size_hint: 0.3, 1
-                    color: 0, 0, 0, 1
-                    background_color: .3, 0, .8, .7
-                TextInput:
-                    text: ''
-                    id: Public_Address
-                    color: 0, 0, 0, 1
-                    background_color: 0, .7, 0, .5
-                Label:
-                    text: 'Private Key'
-                    size_hint: 0.3, 1
-                    color: 0, 0, 0, 1
-                    background_color: 0, 0, .8, .7
-                TextInput:
-                    text: ''
-                    id: Private_Key
-                    color: 0, 0, 0, 1
-                    background_color: .7, 0, 0, .5
-
-            GridLayout:
-			    size_hint: 1, 0.3
-			    rows: 1
-			    padding: 10, 10, 10, 10
-			    canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-			    Button:
-                    text: 'Back To Menu'
-                    background_color: 0, 0, .8, .7
-                    on_release:
-                        root.manager.transition.direction = 'right'
-                        root.manager.current = 'Menu_Screen'
-                Button:
-                    text: "Help"
-                    background_color: .4, .4, .4, 1
-                    on_release:
-                        root.manager.transition.direction = 'up'
-                        root.manager.current = 'BTC_Help_Screen'
-
-<LTC_Screen>:
-    id: LTC_Screen
-    BoxLayout:
-		padding: 10, 10, 10, 10
-		orientation: 'vertical'
-		GridLayout:
-			size_hint: 1, 0.3
-			rows: 5
-            Label:
-                size: self.texture_size
-                size_hint: 1, 0.1
-                text: "Litecoin Offline Wallet Generation"
-                color: 0, 0, 0, 1
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size: self.texture_size
-                size_hint: 1, 0.1
-                text: "Enter passphrase in the box below (Make sure it is long and keep it secure)."
-                color: 0, 0, .8, .7
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            GridLayout:
-                padding: 10, 10, 10, 10
-			    size_hint: 1, 0.5
-			    rows: 1
-			    canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-			    ToggleButton:
-			        size_hint: .2, 0.10
-                    text: "Non-\nRecoverable\nMode\n(Disabled)"
-                    id: NRM_state
-                    on_press: root.toggle()
-                TextInput:
-                    size_hint: 1, 0.10
-                    id: string_to_hash
-                Button:
-                    size_hint: .2, 0.10
-                    text: "Enter"
-                    background_color: 0, 0, 1, .7
-                    on_release:
-                        root.get_keys()
-            GridLayout:
-                padding: 10, 10, 10, 10
-			    size_hint: 1, 0.3
-			    rows: 2
-			    padding: 10, 10, 10, 10
-			    canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-			    Label:
-                    text: 'Public Address'
-                    size_hint: 0.3, 1
-                    color: 0, 0, 0, 1
-                    background_color: .3, 0, .8, .7
-                TextInput:
-                    text: ''
-                    id: Public_Address
-                    color: 0, 0, 0, 1
-                    background_color: 0, .7, 0, .5
-                Label:
-                    text: 'Private Key'
-                    size_hint: 0.3, 1
-                    color: 0, 0, 0, 1
-                    background_color: 0, 0, .8, .7
-                TextInput:
-                    text: ''
-                    id: Private_Key
-                    color: 0, 0, 0, 1
-                    background_color: .7, 0, 0, .5
-
-            GridLayout:
-			    size_hint: 1, 0.3
-			    rows: 1
-			    padding: 10, 10, 10, 10
-			    canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-			    Button:
-                    text: 'Back To Menu'
-                    background_color: 0, 0, .8, .7
-                    on_release:
-                        root.manager.transition.direction = 'right'
-                        root.manager.current = 'Menu_Screen'
-                Button:
-                    text: "Help"
-                    background_color: .4, .4, .4, 1
-                    on_release:
-                        root.manager.transition.direction = 'up'
-                        root.manager.current = 'LTC_Help_Screen'
-
-<ETH_Screen>:
-    id: ETH_Screen
-    BoxLayout:
-		padding: 10, 10, 10, 10
-		orientation: 'vertical'
-		GridLayout:
-			size_hint: 1, 0.3
-			rows: 5
-            Label:
-                size: self.texture_size
-                size_hint: 1, 0.1
-                text: "Ethereum Offline Wallet Generation"
-                color: 0, 0, 0, 1
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size: self.texture_size
-                size_hint: 1, 0.1
-                text: "Enter passphrase in the box below (Make sure it is long and keep it secure)."
-                color: 0, 0, .8, .7
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            GridLayout:
-                padding: 10, 10, 10, 10
-			    size_hint: 1, 0.5
-			    rows: 1
-			    canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-			    ToggleButton:
-			        size_hint: .2, 0.10
-                    text: "Non-\nRecoverable\nMode\n(Disabled)"
-                    id: NRM_state
-                    on_press: root.toggle()
-                TextInput:
-                    size_hint: 1, 0.10
-                    id: string_to_hash
-                Button:
-                    size_hint: .2, 0.10
-                    text: "Enter"
-                    background_color: 0, 0, 1, .7
-                    on_release:
-                        root.get_keys()
-            GridLayout:
-                padding: 10, 10, 10, 10
-			    size_hint: 1, 0.3
-			    rows: 2
-			    padding: 10, 10, 10, 10
-			    canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-			    Label:
-                    text: 'Public Address'
-                    size_hint: 0.3, 1
-                    color: 0, 0, 0, 1
-                    background_color: .3, 0, .8, .7
-                TextInput:
-                    text: ''
-                    id: Public_Address
-                    color: 0, 0, 0, 1
-                    background_color: 0, .7, 0, .5
-                Label:
-                    text: 'Private Key'
-                    size_hint: 0.3, 1
-                    color: 0, 0, 0, 1
-                    background_color: 0, 0, .8, .7
-                TextInput:
-                    text: ''
-                    id: Private_Key
-                    color: 0, 0, 0, 1
-                    background_color: .7, 0, 0, .5
-
-            GridLayout:
-			    size_hint: 1, 0.3
-			    rows: 1
-			    padding: 10, 10, 10, 10
-			    canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-			    Button:
-                    text: 'Back To Menu'
-                    background_color: 0, 0, .8, .7
-                    on_release:
-                        root.manager.transition.direction = 'right'
-                        root.manager.current = 'Menu_Screen'
-                Button:
-                    text: "Help"
-                    background_color: .4, .4, .4, 1
-                    on_release:
-                        root.manager.transition.direction = 'up'
-                        root.manager.current = 'ETH_Help_Screen'
-
-<Dev_Screen>:
-    id: Dev_Screen
+<Menu_Help_Screen>:
+    id: Help_Screen
     on_enter: root.set_text()
     BoxLayout:
 		padding: 10, 10, 10, 10
@@ -469,6 +202,176 @@
                 on_release:
                     root.manager.transition.direction = 'down'
                     root.manager.current = 'Menu_Screen'
+
+
+################################## BTC Screen #################################################
+<BTC_Screen>:
+    id: BTC_Screen
+    BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		GridLayout:
+			size_hint: 1, 0.3
+			rows: 5
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.1
+                text: "Bitcoin Offline Wallet Generation"
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.07
+                text: "Enter passphrase in the box below (Make sure it is long and keep it secure)."
+                color: 0, 0, .8, .7
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            GridLayout:
+                padding: 10, 10, 10, 10
+			    size_hint: 1, 0.25
+			    rows: 1
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+			    ToggleButton:
+			        size_hint: .2, 0.10
+                    text: "Non-\nRecoverable\nMode\n(Disabled)"
+                    id: NRM_state
+                    on_press: root.toggle()
+                TextInput:
+                    size_hint: 1, 0.10
+                    id: string_to_hash
+                Button:
+                    size_hint: .2, 0.10
+                    text: "Enter"
+                    background_color: 0, 0, 1, .7
+                    on_release:
+                        root.get_keys()
+
+            GridLayout:
+                padding: 10, 10, 10, 10
+			    size_hint: 1, 0.5
+			    rows: 4
+			    padding: 10, 10, 10, 10
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                Label:
+                    text: 'Mnemonic Seed:\n(Electrum based)'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, .8
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Mnemonic_Seed
+                        color: 1, 1, 1, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_private_key()
+
+                Label:
+                    text: 'Public Address:'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: .1, .9, .1, .7
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Public_Address
+                        color: 0, 0, 0, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_public_key()
+
+                Label:
+                    text: 'Private Key:'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: .9, .1, .1, .67
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Private_Key
+                        color: 0, 0, 0, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_private_key()
+
+            GridLayout:
+			    size_hint: 1, 0.2
+			    rows: 1
+			    padding: 10, 10, 10, 10
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+			    Button:
+                    text: 'Back To Menu'
+                    background_color: 0, 0, .8, .7
+                    on_release:
+                        root.manager.transition.direction = 'right'
+                        root.manager.current = 'Menu_Screen'
+                Button:
+                    text: "Help"
+                    background_color: .4, .4, .4, 1
+                    on_release:
+                        root.manager.transition.direction = 'up'
+                        root.manager.current = 'BTC_Help_Screen'
 
 <BTC_Help_Screen>:
     id: Help_Screen
@@ -507,6 +410,176 @@
                     root.manager.transition.direction = 'down'
                     root.manager.current = 'BTC_Screen'
 
+
+################################## LTC Screen #################################################
+<LTC_Screen>:
+    id: LTC_Screen
+    BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		GridLayout:
+			size_hint: 1, 0.3
+			rows: 5
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.1
+                text: "Litecoin Offline Wallet Generation"
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.07
+                text: "Enter passphrase in the box below (Make sure it is long and keep it secure)."
+                color: 0, 0, .8, .7
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            GridLayout:
+                padding: 10, 10, 10, 10
+			    size_hint: 1, 0.25
+			    rows: 1
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+			    ToggleButton:
+			        size_hint: .2, 0.10
+                    text: "Non-\nRecoverable\nMode\n(Disabled)"
+                    id: NRM_state
+                    on_press: root.toggle()
+                TextInput:
+                    size_hint: 1, 0.10
+                    id: string_to_hash
+                Button:
+                    size_hint: .2, 0.10
+                    text: "Enter"
+                    background_color: 0, 0, 1, .7
+                    on_release:
+                        root.get_keys()
+
+            GridLayout:
+                padding: 10, 10, 10, 10
+			    size_hint: 1, 0.5
+			    rows: 4
+			    padding: 10, 10, 10, 10
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                Label:
+                    text: 'Mnemonic Seed:\n(Electrum based)'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, .8
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Mnemonic_Seed
+                        color: 1, 1, 1, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_private_key()
+
+                Label:
+                    text: 'Public Address:'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: .1, .9, .1, .7
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Public_Address
+                        color: 0, 0, 0, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_public_key()
+
+                Label:
+                    text: 'Private Key:'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: .9, .1, .1, .67
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Private_Key
+                        color: 0, 0, 0, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_private_key()
+
+            GridLayout:
+			    size_hint: 1, 0.2
+			    rows: 1
+			    padding: 10, 10, 10, 10
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+			    Button:
+                    text: 'Back To Menu'
+                    background_color: 0, 0, .8, .7
+                    on_release:
+                        root.manager.transition.direction = 'right'
+                        root.manager.current = 'Menu_Screen'
+                Button:
+                    text: "Help"
+                    background_color: .4, .4, .4, 1
+                    on_release:
+                        root.manager.transition.direction = 'up'
+                        root.manager.current = 'LTC_Help_Screen'
+
 <LTC_Help_Screen>:
     id: Help_Screen
     on_enter: root.set_text()
@@ -543,6 +616,176 @@
                 on_release:
                     root.manager.transition.direction = 'down'
                     root.manager.current = 'LTC_Screen'
+
+
+################################## ETH Screen #################################################
+<ETH_Screen>:
+    id: ETH_Screen
+    BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		GridLayout:
+			size_hint: 1, 0.3
+			rows: 5
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.1
+                text: "Ethereum Offline Wallet Generation"
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.07
+                text: "Enter passphrase in the box below (Make sure it is long and keep it secure)."
+                color: 0, 0, .8, .7
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            GridLayout:
+                padding: 10, 10, 10, 10
+			    size_hint: 1, 0.25
+			    rows: 1
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+			    ToggleButton:
+			        size_hint: .2, 0.10
+                    text: "Non-\nRecoverable\nMode\n(Disabled)"
+                    id: NRM_state
+                    on_press: root.toggle()
+                TextInput:
+                    size_hint: 1, 0.10
+                    id: string_to_hash
+                Button:
+                    size_hint: .2, 0.10
+                    text: "Enter"
+                    background_color: 0, 0, 1, .7
+                    on_release:
+                        root.get_keys()
+
+            GridLayout:
+                padding: 10, 10, 10, 10
+			    size_hint: 1, 0.5
+			    rows: 4
+			    padding: 10, 10, 10, 10
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                Label:
+                    text: 'Mnemonic Seed:\n(MyEther based)'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, .8
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Mnemonic_Seed
+                        color: 1, 1, 1, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_private_key()
+
+                Label:
+                    text: 'Public Address:'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: .1, .9, .1, .7
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Public_Address
+                        color: 0, 0, 0, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_public_key()
+
+                Label:
+                    text: 'Private Key:'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: .9, .1, .1, .67
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Private_Key
+                        color: 0, 0, 0, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_private_key()
+
+            GridLayout:
+			    size_hint: 1, 0.2
+			    rows: 1
+			    padding: 10, 10, 10, 10
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+			    Button:
+                    text: 'Back To Menu'
+                    background_color: 0, 0, .8, .7
+                    on_release:
+                        root.manager.transition.direction = 'right'
+                        root.manager.current = 'Menu_Screen'
+                Button:
+                    text: "Help"
+                    background_color: .4, .4, .4, 1
+                    on_release:
+                        root.manager.transition.direction = 'up'
+                        root.manager.current = 'ETH_Help_Screen'
 
 <ETH_Help_Screen>:
     id: Help_Screen
@@ -581,7 +824,204 @@
                     root.manager.transition.direction = 'down'
                     root.manager.current = 'ETH_Screen'
 
-<Menu_Help_Screen>:
+
+################################## MTX Screen #################################################
+<MTX_Screen>:
+    id: MTX_Screen
+    BoxLayout:
+		padding: 10, 10, 10, 10
+		orientation: 'vertical'
+		GridLayout:
+			size_hint: 1, 0.3
+			rows: 5
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.1
+                text: "Monero Offline Wallet Generation"
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size: self.texture_size
+                size_hint: 1, 0.07
+                text: "Enter passphrase in the box below (Make sure it is long and keep it secure)."
+                color: 0, 0, .8, .7
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            GridLayout:
+                padding: 10, 10, 10, 10
+			    size_hint: 1, 0.25
+			    rows: 1
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+			    ToggleButton:
+			        size_hint: .2, 0.10
+                    text: "Non-\nRecoverable\nMode\n(Disabled)"
+                    id: NRM_state
+                    on_press: root.toggle()
+                TextInput:
+                    size_hint: 1, 0.10
+                    id: string_to_hash
+                Button:
+                    size_hint: .2, 0.10
+                    text: "Enter"
+                    background_color: 0, 0, 1, .7
+                    on_release:
+                        root.get_keys()
+
+            GridLayout:
+                padding: 10, 10, 10, 10
+			    size_hint: 1, 0.5
+			    rows: 4
+			    padding: 10, 10, 10, 10
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                Label:
+                    text: 'Mnemonic Seed:\n(Electrum based)'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, .8
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Private_Key
+                        color: 1, 1, 1, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_private_key()
+
+                Label:
+                    text: 'Public Address:'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: .1, .9, .1, .7
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Public_Address
+                        color: 0, 0, 0, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_public_key()
+
+                Label:
+                    text: 'Private View Key:'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: .9, .1, .1, .67
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Private_View_Key
+                        color: 0, 0, 0, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_private_view_key()
+
+                Label:
+                    text: 'Private Spend Key:'
+                    size_hint: 0.3, 1
+                    color: 0, 0, 0, 1
+                GridLayout:
+                    rows: 1
+                    canvas.before:
+                        Color:
+                            rgba: .9, .1, .1, .70
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        text: ''
+                        id: Private_Spend_Key
+                        color: 0, 0, 0, 1
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                Button:
+                    text: "Copy"
+                    size_hint: .2, 1
+                    color: 0, 0, 0, 1
+                    background_color: 1, 1, 1, .35
+                    on_release:
+                        root.copy_private_spend_key()
+
+
+            GridLayout:
+			    size_hint: 1, 0.2
+			    rows: 1
+			    padding: 10, 10, 10, 10
+			    canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+			    Button:
+                    text: 'Back To Menu'
+                    background_color: 0, 0, .8, .7
+                    on_release:
+                        root.manager.transition.direction = 'right'
+                        root.manager.current = 'Menu_Screen'
+                Button:
+                    text: "Help"
+                    background_color: .4, .4, .4, 1
+                    on_release:
+                        root.manager.transition.direction = 'up'
+                        root.manager.current = 'MTX_Help_Screen'
+
+<MTX_Help_Screen>:
     id: Help_Screen
     on_enter: root.set_text()
     BoxLayout:
@@ -616,4 +1056,4 @@
                 background_color: 0, 0, .8, .7
                 on_release:
                     root.manager.transition.direction = 'down'
-                    root.manager.current = 'Menu_Screen'
+                    root.manager.current = 'MTX_Screen'
